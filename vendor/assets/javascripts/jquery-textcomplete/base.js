@@ -145,7 +145,7 @@ if (typeof jQuery === 'undefined') {
         zIndex: '99999',
         listPosition: function(position) {
           this.$el.css(this._applyPlacement(position));
-          this.$el.css('position', 'absolute');
+          this.$el.css("position", "absolute");
           return this
         }
       };
