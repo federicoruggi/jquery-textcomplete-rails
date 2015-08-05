@@ -142,7 +142,12 @@ if (typeof jQuery === 'undefined') {
     if (!Completer.DEFAULTS) {
       Completer.DEFAULTS = {
         appendTo: $('body'),
-        zIndex: '100'
+        zIndex: '99999',
+        listPosition: function(position) {
+          this.$el.css(this._applyPlacement(position));
+          this.$el.css('position', 'absolute');
+          return this
+        }
       };
     }
 
@@ -419,7 +424,7 @@ if (typeof jQuery === 'undefined') {
       // Because the same dropdown is reused behind the scenes, we need to recheck every time the dropdown is showed
       var position = 'absolute';
       // Check if input or one of its parents has positioning we need to care about
-      this.$inputEl.add(this.$inputEl.parents()).each(function() { 
+      this.$inputEl.add(this.$inputEl.parents()).each(function() {
         if($(this).css('position') === 'absolute') // The element has absolute positioning, so it's all OK
           return false;
         if($(this).css('position') === 'fixed') {
@@ -664,7 +669,7 @@ if (typeof jQuery === 'undefined') {
       }
     },
 
-    _applyPlacement: function (position) { 
+    _applyPlacement: function (position) {
       // If the 'placement' option set to 'top', move the position above the element.
       if (this.placement.indexOf('top') !== -1) {
         // Overwrite the position object to set the 'bottom' property instead of the top.
